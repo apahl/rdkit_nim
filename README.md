@@ -5,7 +5,7 @@ After many (, many) trials this is the first example of a working rudimentary bi
 
 [Example](examples/ex01_mol_from_smiles.nim) for creating the mol object from the Smiles "c1ccccc1" and counting the heavy atoms:
 
-    $ nim cpp -o:bin/ex01_mol_from_smiles examples/ex01_mol_from_smiles.nim 
+    $ nim build examples/ex01_mol_from_smiles.nim 
     $ LD_LIBRARY_PATH=/home/pahl/anaconda3/envs/chem/lib ./bin/ex01_mol_from_smiles 2>/dev/null
     -> Num Atoms: 6
 
@@ -16,6 +16,8 @@ Pre-requisites:
 
 
 The code still leaks memory, but I am now super-motivated to continue!
-The code in this early iteration also uses hardcoded paths. If you want to run the examples under, please change the paths to match your installation.
+The path to your conda installation of the RDKit has to be set by an environment variable, e.g. in `~/.profile`:
+
+    export RDKIT_NIM_CONDA=/home/pahl/anaconda3/envs/chem
 
 Obviously, this project will change quickly. In the current state it is mainly for showing off my first success (did I mention that I am excited?).
