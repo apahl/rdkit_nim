@@ -1,0 +1,5 @@
+nimcache/
+.vscode/
+doc/
+bin/
+nimsuggest.*
