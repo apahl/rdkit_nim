@@ -7,7 +7,10 @@ After many (, many) trials this is the first example of a working rudimentary bi
 
     $ nim build examples/ex01_mol_from_smiles.nim 
     $ LD_LIBRARY_PATH=$RDKIT_NIM_CONDA/lib ./bin/ex01_mol_from_smiles
-    -> Num Atoms: 6
+    
+    Output:
+    Mol Ok:    true
+    Num Atoms: 6
 
 Since these are two of my most favorite tools, I am VERY excited.
 
