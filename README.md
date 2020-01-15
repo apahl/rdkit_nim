@@ -6,7 +6,7 @@ After many (, many) trials this is the first example of a working rudimentary bi
 [Example](examples/ex01_mol_from_smiles.nim) for creating the mol object from the Smiles "c1ccccc1" and counting the heavy atoms:
 
     $ nim build examples/ex01_mol_from_smiles.nim 
-    $ LD_LIBRARY_PATH=$RDKIT_NIM_CONDA/lib ./bin/ex01_mol_from_smiles 2>/dev/null
+    $ LD_LIBRARY_PATH=$RDKIT_NIM_CONDA/lib ./bin/ex01_mol_from_smiles
     -> Num Atoms: 6
 
 Since these are two of my most favorite tools, I am VERY excited.
