@@ -1,5 +1,8 @@
+# raw/rdmol.nim
+
 # nm -gC libRDKitGraphMol.so | less
-# /home/pahl/anaconda3/envs/chem/lib/libRDKitGraphMol.so.1.2019.09.2
+# /home/pahl/anaconda3/envs/chem/lib/libRDKitGraphMol
+
 import os # `/`, getEnv RDKIT_NIM_CONDA
 
 const
@@ -10,12 +13,8 @@ type
   RWMol* {.final, header: molHeader,
     importcpp: "RDKit::RWMol".} = object
 
-  ROMol* {.final, header: molHeader,
-    importcpp: "RDKit::ROMol".} = object
-
 proc newMol*(): RWMol {.constructor, importcpp: "RDKit::RWMol(@)",
    header: molHeader.}
 
-proc numAtoms*(this: RWMol): cuint {.importcpp: "#.getNumAtoms(@)",
+proc rdkitNumAtoms*(this: RWMol): cuint {.importcpp: "#.getNumAtoms(@)",
   header: molHeader.}
-

@@ -1,14 +1,12 @@
-import ../src/rdmol
-import ../src/smiles_parser
+import ../src/rdkit / [mol, smiles_parser]
 
 when isMainModule:
   var
-    sp = "c1ccccc1".cstring
+    smi = "c1ccccc1"
+    m = smilesToMol(smi)
 
-    s = constructString(sp)
-    # p = constructSmilesParserParams()
-    p = SmilesParserParams()
-    m = smilesToMol(s, addr p)
-    na = m[].numAtoms()
+  echo "Mol Ok:    ", m.ok
 
-  echo "Num Atoms: ", na
+  if m.ok:
+    var na = m.numAtoms()
+    echo "Num Atoms: ", na
