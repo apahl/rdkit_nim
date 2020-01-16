@@ -12,7 +12,7 @@ backend       = "cpp"
 
 requires "nim >= 1.1.1"
 
-task test, "run tests in test/...":
+task test, "run tests...":
   # test files have to be in dir `tests` and of the form `test_xxx.nim`
   # list tests that should be skipped here, e.g. during development,
   # when they have already been run.
