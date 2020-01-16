@@ -21,5 +21,10 @@ proc constructString*(s: cstring): CppString {.header: "<string>",
 proc rdkitConstructSmilesParserParams*(): RdkitSmilesParserParams {.
     importcpp: "RDKit::SmilesParserParams()", header: smilesHeader.}
 
-proc rdkitSmilesToMol*(smi: CppString; params: RdkitSmilesParserParams): ptr RWMol {.
-  header: smilesHeader, importcpp: "RDKit::SmilesToMol(@)".}
+proc rdkitSmilesToMol*(smi: CppString; params: RdkitSmilesParserParams): ptr ROMol {.
+    header: smilesHeader, importcpp: "RDKit::SmilesToMol(@)".}
+
+proc rdkitSmartsToMol*(sma: CppString): ptr ROMol {.header: smilesHeader,
+    importcpp: "RDKit::SmartsToMol(@)".}
+
+

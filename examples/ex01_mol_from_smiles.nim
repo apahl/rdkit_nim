@@ -1,12 +1,19 @@
-import ../src/rdkit / [mol, smiles_parser]
+import ../src/rdkit / [mol, parsers]
 
 when isMainModule:
-  var
-    smi = "c1ccccc1"
+  let
+    smi = "c1ccccc1C(=O)NC"
     m = smilesToMol(smi)
 
   echo "Mol Ok:    ", m.ok
 
   if m.ok:
-    var na = m.numAtoms()
-    echo "Num Atoms: ", na
+    let
+      na = m.numAtoms
+      mw = m.molWt
+      rot = m.numRotatableBonds
+      nh = m.numHeteroAtoms
+    echo "Num Atoms:    ", na
+    echo "Mol weight:   ", mw
+    echo "Rot. Bonds:   ", rot
+    echo "Num HetAtoms: ", nh

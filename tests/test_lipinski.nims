@@ -1,11 +1,15 @@
 import os # `/`
 
 let
-  fileName = "ex01_mol_from_smiles"
+  fileName = "test_lipinski"
   condaPath = getEnv("RDKIT_NIM_CONDA")
 
 task build, "Building default cpp target...":
-  switch("out", "bin" / toExe(fileName))
+  switch("verbosity", "0")
+  # switch("hint[Conf]", "off")
+  switch("hints", "off")
+  switch("out", "tests/bin" / toExe(fileName))
+  switch("run")
   switch("passL", "-lstdc++")
   switch("passL", "-L" & condaPath & "/lib")
   switch("passL", "-lRDKitGraphMol")
