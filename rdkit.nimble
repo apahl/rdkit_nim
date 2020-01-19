@@ -19,14 +19,14 @@ task test, "run tests...":
   let testsToSkip = @["test_xxx"]
   var skippedTests: seq[string]
   mkDir "tests/bin"
+  var failed = false
   for f in listFiles("tests"):
     if f[0..10] == "tests/test_" and f[^4..^1] == ".nim":
       let testName = f[6..^1]
       if testName in testsToSkip:
         skippedTests.add(testName)
         continue
-      let runCmd = "LD_LIBRARY_PATH=$RDKIT_NIM_CONDA/lib nim --hint[Conf]:off build tests/" & testName
-      var failed = false
+      let runCmd = "LD_LIBRARY_PATH=$RDKIT_NIM_CONDA/lib nim --hint[Conf]:off -f build tests/" & testName
       try:
         exec runCmd
       except:
@@ -34,6 +34,8 @@ task test, "run tests...":
         echo "Failed to run " & f
       if failed:
         break
+  if not failed:
+    echo "\n    All tests passed."
   if skippedTests.len  > 0:
     echo "\n  Skipped tests:"
     for st in skippedTests:

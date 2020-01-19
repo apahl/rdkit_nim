@@ -28,6 +28,12 @@ The path to your conda installation of the RDKit has to be set by an environment
 Valgrind is not reporting any errors, so the package should not leak memory, but I will keep an eye on this.
 Obviously, this project will change quickly. In the current state it is mainly for showing off my first success (did I mention that I am excited?).
 
+The following functionality from RDKit has been wrapped so far:
+
+* Parsing of molecules from Smiles and Smarts: `smilesToMol, smartsToMol`
+* Calculation of molecular properties: `numAtoms, molWt, numRings, cLogP, numHBA, numHBD`
+* Substructure search: `hasSubstructMatch, numSunstructMatches, substructMatches`
+
 For further usage, until a real documentation becomes available, please have a look at the tests.
 
 

@@ -1,4 +1,4 @@
-# raw/smiles_parser.nim
+# raw/rdparsers.nim
 
 import os # `/`, getEnv
 

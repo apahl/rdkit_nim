@@ -20,4 +20,4 @@ when isMainModule:
   assert equalFloats(m.cLogP, 1.0462)
   assert equalFloats(m.fractionCSP3, 0.125)
 
-  echo rpad("    [mol.nim]", 25) & "all tests passed."
+  echo rpad("    [mol.nim]", 25) & "passed."
