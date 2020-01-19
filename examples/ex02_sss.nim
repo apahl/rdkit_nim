@@ -18,4 +18,4 @@ when isMainModule:
 
     echo m.hasSubstructMatch(q)
     echo m.numSubstructMatches(q)
-    echo m.substructMAtches(q)
+    echo m.substructMatches(q)

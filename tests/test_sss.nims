@@ -1,7 +1,7 @@
 import os # `/`
 
 let
-  fileName = "test_lipinski"
+  fileName = "test_sss"
   condaPath = getEnv("RDKIT_NIM_CONDA")
 
 task build, "Building default cpp target...":

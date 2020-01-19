@@ -4,20 +4,20 @@ import raw/rdparsers
 import mol
 
 proc smilesToMol*(smi: string): Mol =
-  # result = new Mol
+  result = new Mol
   let
     cstr = smi.cstring
     s = constructString(cstr)
     p = RdkitSmilesParserParams()
     m = rdkitSmilesToMol(s, p)
-  result = m
+  result.obj = m
 
 proc smartsToMol*(sma: string): Mol =
-  # result = new Mol
+  result = new Mol
   let
     cstr = sma.cstring
     s = constructString(cstr)
     m = rdkitSmartsToMol(s)
-  result = m
+  result.obj = m
 
 

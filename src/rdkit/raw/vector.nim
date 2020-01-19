@@ -6,12 +6,19 @@ type
   # https://nim-lang.github.io/Nim/manual.html#importcpp-pragma-importcpp-for-objects
 
   CppPair*[T, U] {.importcpp: "std::pair", header: "<vector>".} = object
-    first*: T
-    second*: U
 
   CppIntPair* = CppPair[cint, cint]
 
   SizeType* = uint
+
+proc first*[T, U](this: CppPair[T, U]): T {.importcpp: "#.first",
+    header: "<vector>".}
+
+proc second*[T, U](this: CppPair[T, U]): U {.importcpp: "#.second",
+    header: "<vector>".}
+
+proc destroyVector*(this: CppVector) {.importcpp: "#.~vector()",
+    header: "<vector>".}
 
 proc len*(v: CppVector): SizeType {.importcpp: "#.size()",
     header: "<vector>".}

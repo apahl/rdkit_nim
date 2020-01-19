@@ -16,7 +16,7 @@ type
   ROMol* {.final, header: molHeader,
     importcpp: "RDKit::ROMol".} = object
 
-proc destroyROMol*(this: ptr ROMol) {.importcpp: "#.~ROMol()",
+proc destroyROMol*(this: ROMol) {.importcpp: "#.~ROMol()",
     header: molHeader.}
 
 proc newMol*(): ROMol {.constructor, importcpp: "RDKit::ROMol(@)",

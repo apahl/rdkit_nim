@@ -8,15 +8,15 @@ using
 
 proc hasSubStructMatch*(this; query: Mol): bool =
   ## Returns true when the query was found.
-  not rdkitSubstructMatch(this[], query[]).isEmpty
+  not rdkitSubstructMatch(this.obj[], query.obj[]).isEmpty
 
 proc numSubstructMatches*(this; query: Mol): uint =
   ## Returns the number of substructure matches.
-  len(rdkitSubstructMatch(this[], query[]))
+  len(rdkitSubstructMatch(this.obj[], query.obj[]))
 
 proc substructMatches*(this; query: Mol): seq[seq[uint]] =
   # returns atom indices in the mol that match the query as seq of seq.
-  let matches = rdkitSubstructMatch(this[], query[])
+  let matches = rdkitSubstructMatch(this.obj[], query.obj[])
   if matches.isEmpty:
     return result
   for match in matches:
@@ -24,4 +24,3 @@ proc substructMatches*(this; query: Mol): seq[seq[uint]] =
     for pair in match:
       m.add(uint(pair.second))
     result.add(m)
-
