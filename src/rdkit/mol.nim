@@ -9,6 +9,9 @@ type
 using
   this: Mol
 
+proc destroy*(this) =
+  this.destroyROMol()
+
 proc ok*(this): bool =
   ## Returns true when the mol object is valid.
   not this.isNil
