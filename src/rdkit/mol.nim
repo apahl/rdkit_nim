@@ -4,7 +4,7 @@ import raw/rdmol
 
 type
   ## The base Mol object
-  Mol* = ref object
+  Mol* = object
     obj*: ptr ROMol
 
 using

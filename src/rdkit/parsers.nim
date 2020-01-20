@@ -4,7 +4,7 @@ import raw/rdparsers
 import mol
 
 proc smilesToMol*(smi: string): Mol =
-  result = new Mol
+  # result = new Mol
   let
     cstr = smi.cstring
     s = constructString(cstr)
@@ -13,7 +13,7 @@ proc smilesToMol*(smi: string): Mol =
   result.obj = m
 
 proc smartsToMol*(sma: string): Mol =
-  result = new Mol
+  # result = new Mol
   let
     cstr = sma.cstring
     s = constructString(cstr)
