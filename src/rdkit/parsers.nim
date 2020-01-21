@@ -9,7 +9,7 @@ proc molFromSmiles*(smi: string): Mol =
   ## *Example:* create a molecule and check for success:
   ##
   ## .. code-block::
-  ##   import mol, parsers
+  ##   import rdkit / [mol, parsers]
   ##
   ##   let smi = "c1ccccc1C(=O)NC2CC2" # cyclopropyl benzamide
   ##   m = molFromSmiles(smi)
