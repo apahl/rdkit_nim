@@ -1,4 +1,4 @@
-import ../src/rdkit / [mol, parsers, sss]
+import rdkit / [mol, parsers, sss]
 
 proc createLotsOfMolecules() =
   for i in 1 .. 1000000:

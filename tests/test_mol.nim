@@ -1,6 +1,6 @@
 import
-  ../src/rdkit/private/test_helpers, # directWrite, rpad
-  ../src/rdkit / [mol, parsers]
+  rdkit/private/test_helpers, # directWrite, rpad
+  rdkit / [mol, parsers]
 
 when isMainModule:
   directWrite rpad("    [mol.nim]", 25) & "...\r"
