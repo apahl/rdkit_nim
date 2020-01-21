@@ -25,14 +25,11 @@ The path to your conda installation of the RDKit has to be set by an environment
 
     export RDKIT_NIM_CONDA=/home/pahl/anaconda3/envs/chem
 
-~~Valgrind is not reporting any errors, so the package should not leak memory, but I will keep an eye on this.~~
-[UPDATE 19-Jan-2020]: Apparently, the code from [example03](examples/ex03_mem.nim) **IS** leaking memory. <u>This is a road block for me, I currently have no idea how to fix this.</u>
-
 Obviously, this project will change quickly. In the current state it is mainly for showing off my first success (did I mention that I am excited?).
 
 The following functionality from RDKit has been wrapped so far:
 
-* Parsing of molecules from Smiles and Smarts: `smilesToMol, smartsToMol`
+* Parsing of molecules from Smiles and Smarts: `molFromSmiles (smilesToMol), smartsToMol`
 * Calculation of molecular properties: `numAtoms, molWt, numRings, cLogP, numHBA, numHBD`
 * Substructure search: `hasSubstructMatch, numSunstructMatches, substructMatches`
 
@@ -42,7 +39,8 @@ For further usage, until a real documentation becomes available, please have a l
 ## Installation
 
 Clone the repo, `cd` into it and install with `nimble install`.  
-From the repo dir you can also run the tests with `nimble test`.
+From the repo dir you can also run the tests with `nimble test`.  
+The package documentation can be generated with `nimble doc`.
 
 To use the package in your own projects, the imports then have to be of the form:
 

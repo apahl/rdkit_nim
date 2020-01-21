@@ -3,7 +3,7 @@ import ../src/rdkit / [mol, parsers]
 when isMainModule:
   let
     smi = "c1ccccc1C(=O)NC"
-    m = smilesToMol(smi)
+    m = molFromSmiles(smi)
 
   echo "Mol Ok:    ", m.ok
 

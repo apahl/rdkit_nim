@@ -12,7 +12,9 @@ backend       = "cpp"
 
 requires "nim >= 1.1.1"
 
-task test, "run tests...":
+import os
+
+task test, "run tests":
   # test files have to be in dir `tests` and of the form `test_xxx.nim`
   # list tests that should be skipped here, e.g. during development,
   # when they have already been run.
@@ -41,3 +43,14 @@ task test, "run tests...":
     for st in skippedTests:
       echo "    - ", st
   rmDir "tests/bin/"
+
+task doc, "generate documentation":
+  echo "    generating documentation..."
+  mkDir "docs"
+  for file in listFiles("src/rdkit/"):
+    if splitFile(file).ext == ".nim":
+      # echo file.changeFileExt("html")
+      # echo file.changeFileExt("html").split("/")[2]
+      let taskCmd = "nim doc --index:on --verbosity:0 --hints:off -o:" & "docs" /../ file.changeFileExt("html").split("/")[2] & " " & file
+      exec taskCmd
+      exec "nim buildIndex --verbosity:0 --hints:off -o:docs/theindex.html docs"

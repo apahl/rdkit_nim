@@ -7,7 +7,7 @@ when isMainModule:
   # testing simple graph formation
   let
     smi = "c1ccccc1C(=O)NC"
-    m = smilesToMol(smi)
+    m = molFromSmiles(smi)
 
 
   assert m.ok

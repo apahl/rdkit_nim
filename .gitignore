@@ -1,6 +1,6 @@
 nimcache/
 .vscode/
-doc/
+docs/
 bin/
 tests/bin
 nimsuggest.*

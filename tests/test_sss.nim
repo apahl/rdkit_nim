@@ -5,10 +5,10 @@ import
 when isMainModule:
   directWrite rpad("    [sss.nim]", 25) & "...\r"
   let
-    smi = "c1ccccc1C(=O)NC2CC2" # cyclopropyl benzamide
-    m = smilesToMol(smi)
-    q1 = smilesToMol("C1CC1")   # cyclopropane
-    q2 = smilesToMol("C1CCC1")  # cyclobutane
+    smi = "c1ccccc1C(=O)NC2CC2"  # cyclopropyl benzamide
+    m = molFromSmiles(smi)
+    q1 = molFromSmiles("C1CC1")  # cyclopropane
+    q2 = molFromSmiles("C1CCC1") # cyclobutane
 
 
   assert m.ok
