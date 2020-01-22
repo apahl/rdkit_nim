@@ -9,11 +9,12 @@ After many (, many) trials this is the first example of a working rudimentary bi
     $ LD_LIBRARY_PATH=$RDKIT_NIM_CONDA/lib ./bin/ex01_mol_from_smiles
     
     Output:
-        Mol Ok:    true
-        Num Atoms:    10
-        Mol weight:   135.166
-        Rot. Bonds:   1
-        Num HetAtoms: 2
+        Mol Ok:                 true
+        Num Atoms:              10
+        Mol weight:             135.166
+        Rot. Bonds:             1
+        Num HetAtoms:           2
+        Canonical Smiles:       CNC(=O)c1ccccc1
 
 Since these are two of my most favorite tools, I am VERY excited.
 

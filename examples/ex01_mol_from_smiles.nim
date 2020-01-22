@@ -5,7 +5,7 @@ when isMainModule:
     smi = "c1ccccc1C(=O)NC"
     m = molFromSmiles(smi)
 
-  echo "Mol Ok:    ", m.ok
+  echo "Mol Ok:                 ", m.ok
 
   if m.ok:
     let
@@ -13,8 +13,8 @@ when isMainModule:
       mw = m.molWt
       rot = m.numRotatableBonds
       nh = m.numHeteroAtoms
-    echo "Num Atoms:    ", na
-    echo "Mol weight:   ", mw
-    echo "Rot. Bonds:   ", rot
-    echo "Num HetAtoms: ", nh
-    echo "Smiles:       ", m.molToSmiles
+    echo "Num Atoms:              ", na
+    echo "Mol weight:             ", mw
+    echo "Rot. Bonds:             ", rot
+    echo "Num HetAtoms:           ", nh
+    echo "Canonical Smiles:       ", m.molToSmiles
