@@ -1,4 +1,4 @@
-# smiles_parser.nim
+# parsers.nim
 
 import raw/rdparsers
 import mol
@@ -39,3 +39,7 @@ proc molFromSmarts*(sma: string): Mol =
 
 proc smartsToMol*(sma: string): Mol {.deprecated: "use molFromSmarts instead".} =
   molFromSmarts(sma)
+
+proc molToSmiles*(mol: Mol): string =
+  let cppSmi = rdkitMolToSmiles(mol.obj[])
+  result = $cppSmi.cStr

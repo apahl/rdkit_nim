@@ -17,3 +17,4 @@ when isMainModule:
     echo "Mol weight:   ", mw
     echo "Rot. Bonds:   ", rot
     echo "Num HetAtoms: ", nh
+    echo "Smiles:       ", m.molToSmiles
