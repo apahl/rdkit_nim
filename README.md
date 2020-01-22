@@ -29,9 +29,9 @@ Obviously, this project will change quickly. In the current state it is mainly f
 
 The following functionality from RDKit has been wrapped so far:
 
-* Parsing of molecules from Smiles and Smarts: `molFromSmiles (smilesToMol), smartsToMol`
+* Parsing of molecules from Smiles and Smarts: `molFromSmiles (smilesToMol), molFromSmarts`
 * Calculation of molecular properties: `numAtoms, molWt, numRings, cLogP, numHBA, numHBD`
-* Substructure search: `hasSubstructMatch, numSunstructMatches, substructMatches`
+* Substructure search: `hasSubstructMatch, numSubstructMatches, substructMatches`
 
 For further usage, until a real documentation becomes available, please have a look at the tests.
 
