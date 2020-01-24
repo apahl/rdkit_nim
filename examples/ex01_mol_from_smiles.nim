@@ -1,4 +1,4 @@
-import rdkit / [mol, parsers]
+import rdkit / [mol, descriptors]
 
 when isMainModule:
   let

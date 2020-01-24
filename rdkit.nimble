@@ -2,7 +2,7 @@
 
 version       = "0.1.0"
 author        = "Axel Pahl"
-description   = "Bindings to the C++ cheminformatics toolkit RDKit"
+description   = "Bindings for the C++ cheminformatics toolkit RDKit"
 license       = "MIT"
 srcDir        = "src"
 
@@ -12,7 +12,7 @@ backend       = "cpp"
 
 requires "nim >= 1.1.1"
 
-import os
+import os, algorithm
 
 task test, "run tests":
   # test files have to be in dir `tests` and of the form `test_xxx.nim`
@@ -22,7 +22,7 @@ task test, "run tests":
   var skippedTests: seq[string]
   mkDir "tests/bin"
   var failed = false
-  for f in listFiles("tests"):
+  for f in sorted(listFiles("tests")):
     if f[0..10] == "tests/test_" and f[^4..^1] == ".nim":
       let testName = f[6..^1]
       if testName in testsToSkip:
@@ -44,13 +44,12 @@ task test, "run tests":
       echo "    - ", st
   rmDir "tests/bin/"
 
-task doc, "generate documentation":
+task doc, " generate documentation":
   echo "    generating documentation..."
   mkDir "docs"
   for file in listFiles("src/rdkit/"):
     if splitFile(file).ext == ".nim":
-      # echo file.changeFileExt("html")
-      # echo file.changeFileExt("html").split("/")[2]
       let taskCmd = "nim doc --index:on --verbosity:0 --hints:off -o:" & "docs" /../ file.changeFileExt("html").split("/")[2] & " " & file
+      echo taskCmd
       exec taskCmd
       exec "nim buildIndex --verbosity:0 --hints:off -o:docs/theindex.html docs"
