@@ -1,4 +1,4 @@
-# Package
+# Package rdkit
 
 version       = "0.1.0"
 author        = "Axel Pahl"
@@ -44,12 +44,11 @@ task test, "run tests":
       echo "    - ", st
   rmDir "tests/bin/"
 
-task doc, " generate documentation":
+task docs, " generate documentation":
   echo "    generating documentation..."
   mkDir "docs"
   for file in listFiles("src/rdkit/"):
     if splitFile(file).ext == ".nim":
       let taskCmd = "nim doc --index:on --verbosity:0 --hints:off -o:" & "docs" /../ file.changeFileExt("html").split("/")[2] & " " & file
-      echo taskCmd
       exec taskCmd
       exec "nim buildIndex --verbosity:0 --hints:off -o:docs/theindex.html docs"

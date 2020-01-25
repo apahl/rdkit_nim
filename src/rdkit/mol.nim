@@ -25,14 +25,16 @@ proc molFromSmiles*(smi: string): Mol =
   ## Create a mol object from a SMILES string.
   ##
   ## *Example:* create a molecule and check for success:
-  runnableExamples:
-    import rdkit/mol
-
-    let smi = "c1ccccc1C(=O)NC2CC2" # cyclopropyl benzamide
-    m = molFromSmiles(smi)
-
-    if m.ok:
-      echo m.numAtoms
+  ##
+  ## .. code-block::
+  ##   import rdkit / [mol, descriptors]
+  ##
+  ##   let
+  ##     smi = "c1ccccc1C(=O)NC2CC2" # cyclopropyl benzamide
+  ##     m = molFromSmiles(smi)
+  ##
+  ##   if m.ok:
+  ##     echo m.numAtoms
 
   # result = new Mol
   let
