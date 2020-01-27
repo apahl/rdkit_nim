@@ -8,6 +8,7 @@ import ./rdmol
 const
   condaPath = getEnv("RDKIT_NIM_CONDA")
   sssHeader = condaPath / "include/rdkit/GraphMol/Substruct/SubstructMatch.h"
+  transformHeader = condaPath / "include/rdkit/GraphMol/ChemTransforms/ChemTransforms.h"
 
 type
   RdMatchVector* = CppVector[CppIntPair]
@@ -15,5 +16,6 @@ type
 proc rdkitSubstructMatch*(this: ROMol; query: ROMol): CppVector[CppVector[
     CppIntPair]] {.importcpp: "RDKit::SubstructMatch(@)", header: sssHeader.}
 
-# proc isEmpty*(m: CppVector[CppVector[CppIntPair]]): bool = m.isEmpty
+proc rdkitDeleteSubstructs*(this: ROMol; query: ROMol): ptr ROMol {.
+    importcpp: "RDKit::deleteSubstructs(@)", header: transformHeader.}
 

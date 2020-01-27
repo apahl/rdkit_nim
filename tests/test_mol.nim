@@ -8,7 +8,8 @@ when isMainModule:
   let
     smi = "c1ccccc1C(=O)NC"
     m = molFromSmiles(smi)
-
+    smi2 = "c1ccccc1C(=O)NC2CC2" # cyclopropyl benzamide
+    m2 = molFromSmiles(smi2)
 
   assert m.ok
   assert m.numAtoms == 10
@@ -19,6 +20,10 @@ when isMainModule:
   assert m.numHBA == 1
   assert equalFloats(m.cLogP, 1.0462)
   assert equalFloats(m.fractionCSP3, 0.125)
+  assert equalFloats(m.tPSA, 29.1)
   assert m.molToSmiles == "CNC(=O)c1ccccc1"
+
+  assert findSSSR(m2) == 2
+
 
   echo rpad("    [mol.nim]", 25) & "passed."

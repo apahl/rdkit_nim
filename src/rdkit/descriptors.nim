@@ -41,3 +41,12 @@ proc numRings*(this): uint =
 proc cLogP*(this): float64 =
   ## Returns the LogP of the molecule.
   float64(this.obj[].rdkitClogP)
+
+proc tPSA*(this): float64 =
+  ## Returns the topological Polar Surface Area (TPSA) of the molecule.
+  float64(this.obj[].rdkitTPSA)
+
+proc findSSSR*(this): int =
+  ## Returns the Smallest Set of Smallest Rings.
+  int(this.obj[].rdkitFindSSSR)
+

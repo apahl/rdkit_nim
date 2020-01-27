@@ -18,3 +18,5 @@ when isMainModule:
     echo "Rot. Bonds:             ", rot
     echo "Num HetAtoms:           ", nh
     echo "Canonical Smiles:       ", m.molToSmiles
+    echo "TPSA:                   ", m.tPSA
+    echo "SSSR:                   ", m.findSSSR

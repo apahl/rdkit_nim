@@ -19,3 +19,6 @@ when isMainModule:
     echo m.hasSubstructMatch(q)
     echo m.numSubstructMatches(q)
     echo m.substructMatches(q)
+
+    let m2 = deleteSubstructs(m, q)
+    echo "NumAtoms after deletion: ", m2.numAtoms

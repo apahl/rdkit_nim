@@ -24,3 +24,7 @@ proc substructMatches*(this; query: Mol): seq[seq[uint]] =
     for pair in match:
       m.add(uint(pair.second))
     result.add(m)
+
+proc deleteSubstructs*(this; query: Mol): Mol =
+  let m = rdkitDeleteSubstructs(this.obj[], query.obj[])
+  result.obj = m

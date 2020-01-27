@@ -12,6 +12,7 @@ task build, "Building default cpp target...":
   switch("passL", "-lRDKitDescriptors")
   switch("passL", "-lRDKitSmilesParse")
   switch("passL", "-lRDKitSubstructMatch")
+  switch("passL", "-lRDKitChemTransforms")
   switch("cincludes", condaPath & "/include/rdkit")
   switch("cincludes", condaPath & "/include")
   setcommand "cpp"

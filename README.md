@@ -41,7 +41,7 @@ For further usage, until a real documentation becomes available, please have a l
 
 Clone the repo, `cd` into it and install with `nimble install`.  
 From the repo dir you can also run the tests with `nimble test`.  
-The package documentation can be generated with `nimble doc`.
+The package documentation can be generated with `nimble docs`.
 
 To use the package in your own projects, the imports then have to be of the form:
 

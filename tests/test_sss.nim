@@ -24,4 +24,10 @@ when isMainModule:
 
   assert m.substructMatches(q1) == @[@[9.uint, 10, 11]]
 
+  # delete cylopropyl from cyclopropyl benzamide
+  let m2 = deleteSubstructs(m, q1)
+  assert m2.numAtoms == 9
+
+
+
   echo rpad("    [sss.nim]", 25) & "passed."

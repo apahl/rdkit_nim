@@ -11,6 +11,8 @@ const
   condaPath = getEnv("RDKIT_NIM_CONDA")
   molHeader = condaPath / "include/rdkit/GraphMol/GraphMol.h"
   descHeader = condaPath / "include/rdkit/GraphMol/Descriptors/MolDescriptors.h"
+  surfHeader = condaPath / "include/rdkit/GraphMol/Descriptors/MolSurf.h"
+  opsHeader = condaPath / "include/rdkit/GraphMol/MolOps.h"
 
 proc rdkitNumAtoms*(this: ROMol): cuint {.importcpp: "#.getNumAtoms(@)",
     header: molHeader.}
@@ -43,3 +45,12 @@ proc rdkitNumRings*(mol: ROMol): cuint {.
 proc rdkitClogP*(mol: ROMol): cdouble {.
     importcpp: "RDKit::Descriptors::calcClogP(@)",
     header: descHeader.}
+
+proc rdkitTPSA*(mol: ROMol): cdouble {.
+    importcpp: "RDKit::Descriptors::calcTPSA(@)",
+    header: surfHeader.}
+
+proc rdkitFindSSSR*(mol: ROMol): cint {.
+    importcpp: "RDKit::MolOps::findSSSR(@)",
+    header: opsHeader.}
+
