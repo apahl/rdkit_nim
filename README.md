@@ -46,9 +46,9 @@ The package documentation can be generated with `nimble docs`.
 
 ## Using the package
 
-To use the package in your own projects, the imports then have to be of the form:
+To use the package in your own projects, the imports have to be of the form:
 
-    import rdkit / [mol, parsers]
+    import rdkit / [mol, descriptors]
 
 
 ### Linking RDKit Shared Object Libraries
@@ -74,7 +74,11 @@ Please remember to list the shared object files that need to be linked from RDKi
 
 `qed`:
 
-* no additional links
+* RDKitGraphMol
+* RDKitSmilesParse
+* RDKitDescriptors
+* RDKitChemTransforms
+* RDKitSubstructMatch
 
 
 ### Running the Compiled Programs

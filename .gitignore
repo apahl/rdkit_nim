@@ -5,3 +5,4 @@ bin/
 tests/bin
 nimsuggest.*
 TODO.md
+rdkit_nim.todo
