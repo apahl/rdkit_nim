@@ -33,7 +33,7 @@ The following functionality from RDKit has been wrapped so far:
 * Parsing of molecules to / from Smiles and Smarts: `molFromSmiles (smilesToMol), molFromSmarts; molToSmiles`
 * Calculation of molecular properties: `numAtoms, molWt, numRings, cLogP, numHBA, numHBD, numRotatableBonds, fractionCSP3, tPSA, findSSSR`
 * Substructure search: `hasSubstructMatch, numSubstructMatches, substructMatches`
-* Drug-Like properties: The Python `QED` module has been re-written in Nim.
+* Drug-Like properties: The Python [QED](https://github.com/rdkit/rdkit/blob/master/rdkit/Chem/QED.py) module has been re-written in Nim.
 
 For further usage, until a real documentation becomes available, please have a look at the tests.
 
