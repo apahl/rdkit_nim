@@ -1,3 +1,5 @@
+## Rewrite of the `Python QED module <https://github.com/rdkit/rdkit/blob/master/rdkit/Chem/QED.py>`_ of the RDKit
+
 import math
 import tables
 import sequtils
