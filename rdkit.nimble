@@ -18,17 +18,17 @@ task test, "run tests":
   # test files have to be in dir `tests` and of the form `test_xxx.nim`
   # list tests that should be skipped here, e.g. during development,
   # when they have already been run.
-  let testsToSkip = @["test_xxx"]
+  let testsToSkip = @["test_xxx"] # @["test_sss", "test_mol"]
   var skippedTests: seq[string]
   mkDir "tests/bin"
   var failed = false
   for f in sorted(listFiles("tests")):
     if f[0..10] == "tests/test_" and f[^4..^1] == ".nim":
-      let testName = f[6..^1]
+      let testName = f[6..^5]
       if testName in testsToSkip:
         skippedTests.add(testName)
         continue
-      let runCmd = "LD_LIBRARY_PATH=$RDKIT_NIM_CONDA/lib nim --hint[Conf]:off -f build tests/" & testName
+      let runCmd = "LD_LIBRARY_PATH=$RDKIT_NIM_CONDA/lib nim --hint[Conf]:off -f build tests/" & testName & ".nim"
       try:
         exec runCmd
       except:

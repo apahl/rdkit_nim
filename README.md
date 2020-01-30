@@ -31,8 +31,9 @@ Obviously, this project will change quickly. In the current state it is mainly f
 The following functionality from RDKit has been wrapped so far:
 
 * Parsing of molecules to / from Smiles and Smarts: `molFromSmiles (smilesToMol), molFromSmarts; molToSmiles`
-* Calculation of molecular properties: `numAtoms, molWt, numRings, cLogP, numHBA, numHBD`
+* Calculation of molecular properties: `numAtoms, molWt, numRings, cLogP, numHBA, numHBD, numRotatableBonds, fractionCSP3, tPSA, findSSSR`
 * Substructure search: `hasSubstructMatch, numSubstructMatches, substructMatches`
+* Drug-Like properties: The Python `QED` module has been re-written in Nim.
 
 For further usage, until a real documentation becomes available, please have a look at the tests.
 
@@ -43,11 +44,41 @@ Clone the repo, `cd` into it and install with `nimble install`.
 From the repo dir you can also run the tests with `nimble test`.  
 The package documentation can be generated with `nimble docs`.
 
+## Using the package
+
 To use the package in your own projects, the imports then have to be of the form:
 
     import rdkit / [mol, parsers]
 
+
+### Linking RDKit Shared Object Libraries
+
 Please remember to list the shared object files that need to be linked from RDKit for compilation in the NimScript `.nims` files for each source file. Again, have a look at the examples and the tests for this.
+
+#### List of Libraries to Link by RDKit Module Import:
+
+`mol`:
+
+* RDKitGraphMol
+* RDKitSmilesParse
+
+
+`descriptors`:
+
+* RDKitDescriptors
+
+`sss`:
+
+* RDKitChemTransforms
+* RDKitSubstructMatch
+
+`qed`:
+
+* no additional links
+
+
+### Running the Compiled Programs
+
 When running the compiled programs, remember to prepend the call to the binary with the `LD_LIBRARY_PATH`, e.g.:
 
     $ LD_LIBRARY_PATH=$RDKIT_NIM_CONDA/lib my_program

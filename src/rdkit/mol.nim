@@ -62,3 +62,7 @@ proc smartsToMol*(sma: string): Mol {.deprecated: "use molFromSmarts instead".} 
 proc molToSmiles*(mol: Mol): string =
   let cppSmi = rdkitMolToSmiles(mol.obj[])
   result = $cppSmi.cStr
+
+proc removeHs*(this): Mol =
+  let m = rdkitRemoveHs(this.obj[])
+  result.obj = m

@@ -7,6 +7,7 @@ const
   smilesHeader = condaPath / "include/rdkit/GraphMol/SmilesParse/SmilesParse.h"
   writerHeader = condaPath / "include/rdkit/GraphMol/SmilesParse/SmilesWrite.h"
   molHeader = condaPath / "include/rdkit/GraphMol/GraphMol.h"
+  opsHeader = condaPath / "include/rdkit/GraphMol/MolOps.h"
 
 type
   CppString* {.importcpp: "std::string", header: "<string>".} = object
@@ -41,3 +42,6 @@ proc rdkitSmartsToMol*(sma: CppString): ptr ROMol {.header: smilesHeader,
 
 proc rdkitMolToSmiles*(mol: ROMol): CppString {.
     importcpp: "RDKit::MolToSmiles(@)", header: writerHeader.}
+
+proc rdkitRemoveHs*(this: ROMol): ptr ROMol {.
+    importcpp: "RDKit::MolOps::removeHs(@)", header: opsHeader.}
