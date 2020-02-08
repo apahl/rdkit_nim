@@ -80,6 +80,8 @@ Please remember to list the shared object files that need to be linked from RDKi
 * RDKitChemTransforms
 * RDKitSubstructMatch
 
+Of course, every library only has to be linked once. So, if two module imports require the same shared library to be linked, it has to be added only once to the NimScript `.nims` file.
+
 
 ### Running the Compiled Programs
 
