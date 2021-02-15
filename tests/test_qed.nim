@@ -1,7 +1,7 @@
 import
   tables,
   strutils,
-  rdkit/private/test_helpers, # directWrite, rpad
+  rdkit/private/test_helpers, # directWrite, rpad, equalFloats
   rdkit / [mol, qed]
 
 when isMainModule:

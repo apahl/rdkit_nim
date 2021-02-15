@@ -6,28 +6,26 @@ After many (, many) trials this is the first example of a working rudimentary bi
 [Example](examples/ex01_mol_from_smiles.nim) for creating the mol object from the Smiles "c1ccccc1C(=O)NC" (methyl benzamide) and calculating some properties:
 
     $ nim build examples/ex01_mol_from_smiles.nim 
-    $ LD_LIBRARY_PATH=$RDKIT_NIM_CONDA/lib ./bin/ex01_mol_from_smiles
+    $ LD_LIBRARY_PATH=$RDKIT_CONDA/lib ./bin/ex01_mol_from_smiles
     
     Output:
-        Mol Ok:                 true
-        Num Atoms:              10
-        Mol weight:             135.166
-        Rot. Bonds:             1
-        Num HetAtoms:           2
-        Canonical Smiles:       CNC(=O)c1ccccc1
-
-Since these are two of my most favorite tools, I am VERY excited.
+        Mol Ok:            true
+        Num Atoms:         10
+        Mol weight:        135.166
+        Rot. Bonds:        1
+        Num HetAtoms:      2
+        Canonical Smiles:  CNC(=O)c1ccccc1
+        TPSA:              29.1
+        SSSR:              1
 
 Pre-requisites:
 * Installations of RDKit (e.g. via `conda`) and Nim
 
-
 The path to your conda installation of the RDKit has to be set by an environment variable, e.g. in `~/.profile`:
 
-    export RDKIT_NIM_CONDA=/home/pahl/anaconda3/envs/chem
+    export RDKIT_CONDA=/home/pahl/anaconda3/envs/chem
 
-Obviously, this project will change quickly. In the current state it is mainly for showing off my first success (did I mention that I am excited?).
-
+Obviously, this project will change quickly. In the current state it is mainly for showing off my first success.  
 The following functionality from RDKit has been wrapped so far:
 
 * Parsing of molecules to / from Smiles and Smarts: `molFromSmiles (smilesToMol), molFromSmarts; molToSmiles`
@@ -42,6 +40,18 @@ For further usage, until a real documentation becomes available, please have a l
 
 Clone the repo, `cd` into it and install with `nimble install`.  
 From the repo dir you can also run the tests with `nimble test`.  
+The output should like follows:
+
+    $ nimble test
+    Executing task test in /home/pahl/dev/nim/rdkit_nim/rdkit.nimble
+        [mol.nim]             passed.
+        [qed.nim]             passed.
+        [sss.nim]             passed.
+
+        All thests passed.
+
+
+
 The package documentation can be generated with `nimble docs`.
 
 ## Using the package
@@ -51,42 +61,10 @@ To use the package in your own projects, the imports have to be of the form:
     import rdkit / [mol, descriptors]
 
 
-### Linking RDKit Shared Object Libraries
-
-Please remember to list the shared object files that need to be linked from RDKit for compilation in the NimScript `.nims` files for each source file. Again, have a look at the examples and the tests for this.
-
-#### List of Libraries to Link by RDKit Module Import:
-
-`mol`:
-
-* RDKitGraphMol
-* RDKitSmilesParse
-
-
-`descriptors`:
-
-* RDKitDescriptors
-
-`sss`:
-
-* RDKitChemTransforms
-* RDKitSubstructMatch
-
-`qed`:
-
-* RDKitGraphMol
-* RDKitSmilesParse
-* RDKitDescriptors
-* RDKitChemTransforms
-* RDKitSubstructMatch
-
-Of course, every library only has to be linked once. So, if two module imports require the same shared library to be linked, it has to be added only once to the NimScript `.nims` file.
-
-
 ### Running the Compiled Programs
 
 When running the compiled programs, remember to prepend the call to the binary with the `LD_LIBRARY_PATH`, e.g.:
 
-    $ LD_LIBRARY_PATH=$RDKIT_NIM_CONDA/lib my_program
+    $ LD_LIBRARY_PATH=$RDKIT_CONDA/lib my_program
 
 Permanently modifying `LD_LIBRARY_PATH` (e.g. in `~/.profile`) or adding the path in `/etc/ld.so.conf.d/` has messed up my system and lead to errors in other programs, this is therefore not recommended. If someone has an idea how to do this more elegantly, please let me know.

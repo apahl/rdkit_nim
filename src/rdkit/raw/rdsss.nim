@@ -1,17 +1,20 @@
 # raw/rdsss.nim
 
-import os # `/`, getEnv RDKIT_NIM_CONDA
+import os # `/`, getEnv RDKIT_CONDA
 
 import ./vector
 import ./rdmol
 
 const
-  condaPath = getEnv("RDKIT_NIM_CONDA")
+  condaPath = getEnv("RDKIT_CONDA")
   sssHeader = condaPath / "include/rdkit/GraphMol/Substruct/SubstructMatch.h"
   transformHeader = condaPath / "include/rdkit/GraphMol/ChemTransforms/ChemTransforms.h"
 
 type
   RdMatchVector* = CppVector[CppIntPair]
+
+{.passL: "-lRDKitSubstructMatch".}
+{.passL: "-lRDKitChemTransforms".}
 
 proc rdkitSubstructMatch*(this: ROMol; query: ROMol): CppVector[CppVector[
     CppIntPair]] {.importcpp: "RDKit::SubstructMatch(@)", header: sssHeader.}

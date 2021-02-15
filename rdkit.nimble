@@ -10,7 +10,7 @@ backend       = "cpp"
 
 # Dependencies
 
-requires "nim >= 1.1.1"
+requires "nim >= 1.4"
 
 import os, algorithm
 
@@ -28,21 +28,22 @@ task test, "run tests":
       if testName in testsToSkip:
         skippedTests.add(testName)
         continue
-      let runCmd = "LD_LIBRARY_PATH=$RDKIT_NIM_CONDA/lib nim --hint[Conf]:off -f build tests/" & testName & ".nim"
+      let runCmd = "LD_LIBRARY_PATH=$RDKIT_CONDA/lib nim --hint[Conf]:off -f build tests/" & testName & ".nim 2> tests/bin/" & testName & ".out"
       try:
         exec runCmd
       except:
         failed = true
-        echo "Failed to run " & f
       if failed:
+        echo "Failed to run " & f
+        echo "More information can be found in tests/bin/" & testName & ".out"
         break
   if not failed:
     echo "\n    All tests passed."
+    rmDir "tests/bin/"
   if skippedTests.len  > 0:
     echo "\n  Skipped tests:"
     for st in skippedTests:
       echo "    - ", st
-  rmDir "tests/bin/"
 
 task docs, " generate documentation":
   echo "    generating documentation..."

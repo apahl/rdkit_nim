@@ -3,8 +3,8 @@ const floatCutoff = 1.0e-6
 
 ## buffer-free writing to stdout
 template directWrite*(s: string): untyped =
-    stdout.write s
-    stdout.flushFile
+  stdout.write s
+  stdout.flushFile
 
 ## compare two doubles with a tolerance
 proc equalFloats*(d1, d2: float): bool =

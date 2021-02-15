@@ -3,16 +3,19 @@
 # nm -gC libRDKitGraphMol.so | less
 # /home/pahl/anaconda3/envs/chem/lib/libRDKitGraphMol
 
-import os # `/`, getEnv RDKIT_NIM_CONDA
+import os # `/`, getEnv RDKIT_CONDA
 
 import ./rdmol
 
 const
-  condaPath = getEnv("RDKIT_NIM_CONDA")
+  condaPath = getEnv("RDKIT_CONDA")
   molHeader = condaPath / "include/rdkit/GraphMol/GraphMol.h"
   descHeader = condaPath / "include/rdkit/GraphMol/Descriptors/MolDescriptors.h"
   surfHeader = condaPath / "include/rdkit/GraphMol/Descriptors/MolSurf.h"
   opsHeader = condaPath / "include/rdkit/GraphMol/MolOps.h"
+
+# {.passL: "-L" & condaPath & "/lib".}
+{.passL: "-lRDKitDescriptors".}
 
 proc rdkitNumAtoms*(this: ROMol): cuint {.importcpp: "#.getNumAtoms(@)",
     header: molHeader.}
