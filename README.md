@@ -32,7 +32,7 @@ The following functionality from RDKit has been wrapped so far:
 * Substructure search: `hasSubstructMatch, numSubstructMatches, substructMatches`
 * Drug-Like properties: The Python [QED](https://github.com/rdkit/rdkit/blob/master/rdkit/Chem/QED.py) module has been re-written in Nim.
 * Drawing molecules to SVG format
-    - the molecules can be drawn to SVG strings (`mol.toSVG()`), using either the CoordGen method (deafult) or the original RDKit functionality (`mol.toSVG(coordGen = RDKit)`).
+    - the molecules can be drawn to SVG strings (`mol.toSVG()`), using either the CoordGen method (default) or the original RDKit functionality (`mol.toSVG(coordGen = RDKit)`).
 
         ![CoordGen](res/mol_coordgen.svg)![CoordGen](res/mol_rdkit.svg)
 
@@ -43,7 +43,7 @@ For further usage, until a real documentation becomes available, please have a l
 
 Clone the repo, `cd` into it and install with `nimble install`.  
 From the repo dir you can also run the tests with `nimble test`.  
-The output should like follows:
+The output should look like this:
 
     $ nimble test
     Executing task test in /home/pahl/dev/nim/rdkit_nim/rdkit.nimble
@@ -62,7 +62,7 @@ The package documentation can be generated with `nimble docs`.
 
 To use the package in your own projects, the imports have to be of the form:
 
-    import rdkit / [mol, descriptors]
+    import rdkit / [molecule, descriptors]
 
 
 ### Running the Compiled Programs
