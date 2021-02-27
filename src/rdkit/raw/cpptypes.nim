@@ -1,7 +1,12 @@
 # Taken from https://github.com/kaushalmodi/std_vector/blob/4e953c89e13ebdc1df8b5de71cec04330126b51d/src/std_vector.nim
 
 # https://forum.nim-lang.org/t/3401
+
+{.passL: "-lstdc++".}
+
 type
+  CppString* {.importcpp: "std::string", header: "<string>".} = object
+
   CppVector*[T] {.importcpp: "std::vector", header: "<vector>".} = object
   # https://nim-lang.github.io/Nim/manual.html#importcpp-pragma-importcpp-for-objects
 
@@ -10,6 +15,11 @@ type
   CppIntPair* = CppPair[cint, cint]
 
   SizeType* = uint
+
+proc constructString*(s: cstring): CppString {.header: "<string>",
+                                                  importcpp: "std::string(@)", constructor.}
+
+proc cStr*(s: CppString): cstring {.header: "<string>", importcpp: "#.c_str()".}
 
 proc first*[T, U](this: CppPair[T, U]): T {.importcpp: "#.first",
     header: "<vector>".}

@@ -2,7 +2,7 @@ import
   tables,
   strutils,
   rdkit/private/test_helpers, # directWrite, rpad, equalFloats
-  rdkit / [mol, qed]
+  rdkit / [molecule, qed]
 
 when isMainModule:
   directWrite rpad("    [qed.nim]", 25) & "...\r"

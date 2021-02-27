@@ -3,7 +3,7 @@
 import math
 import tables
 import sequtils
-import mol, descriptors, sss
+import molecule, descriptors, sss
 
 type
   QEDproperties = tuple
@@ -193,8 +193,6 @@ proc ads(x: float; adsParameter: ADSparameter): float =
 
 proc properties(m: Mol): QEDproperties =
   ## Calculates the properties that are required to calculate the QED descriptor.
-  if m.isNil:
-    raise newException(ValueError, "You need to provide a mol argument.")
   let mol = removeHs(m)
   var
     accCount = 0

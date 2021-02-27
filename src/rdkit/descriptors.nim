@@ -1,7 +1,7 @@
 # mol.nim
 
 import ./raw/rddesc
-import mol
+import molecule
 
 using
   this: Mol

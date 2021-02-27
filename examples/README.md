@@ -12,7 +12,7 @@ Then run it from the same folder as:
 
     LD_LIBRARY_PATH=$RDKIT_CONDA/lib ./bin/ex01_mol_from_smiles
 
-    Output:
+    Output (shortened):
         Mol Ok:    true
         Num Atoms:    10
         Mol weight:   135.166

@@ -1,24 +1,25 @@
-import rdkit / [mol, descriptors, sss]
+import rdkit / [molecule, descriptors, sss]
 
 when isMainModule:
   let
-    smi = "c1ccccc1C(=O)NC2CC2" # cyclopropyl benzamide
-    m = molFromSmiles(smi)
-    q = molFromSmiles("C1CC1")  # cyclopropane
+    smi = "c1ccccc1C(=O)NC2CC2"    # cyclopropyl benzamide
+    mol = molFromSmiles(smi)
+    query = molFromSmiles("C1CC1") # cyclopropane
 
     # q = molFromSmiles("c1ccccc1")
 
-  echo "Mol Ok:      ", m.ok
-  echo "Query Ok:    ", q.ok
+  echo "Mol Ok:      ", mol.ok
+  echo "Query Ok:    ", query.ok
 
-  if m.ok and q.ok:
+  if mol.ok and query.ok:
     let
-      na = m.numAtoms
+      na = mol.numAtoms
     echo "Num Atoms:    ", na
 
-    echo m.hasSubstructMatch(q)
-    echo m.numSubstructMatches(q)
-    echo m.substructMatches(q)
+    echo mol.hasSubstructMatch(query)
+    echo mol.numSubstructMatches(query)
+    echo mol.substructMatches(query)
 
-    let m2 = deleteSubstructs(m, q)
+    let m2 = deleteSubstructs(mol, query)
     echo "NumAtoms after deletion: ", m2.numAtoms
+    # echo m.toMolBlock

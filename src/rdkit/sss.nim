@@ -1,7 +1,7 @@
 # sss.nim
 
-import raw / [vector, rdsss]
-import mol
+import raw / [cpptypes, rdsss]
+import molecule
 
 using
   this: Mol

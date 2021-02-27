@@ -1,22 +1,28 @@
-import rdkit / [mol, descriptors]
+import rdkit / [molecule, descriptors, draw]
 
 when isMainModule:
   let
     smi = "c1ccccc1C(=O)NC"
-    m = molFromSmiles(smi)
+    mol = molFromSmiles(smi)
 
-  echo "Mol Ok:            ", m.ok
+  echo "Mol Ok:            ", mol.ok
 
-  if m.ok:
+  if mol.ok:
     let
-      na = m.numAtoms
-      mw = m.molWt
-      rot = m.numRotatableBonds
-      nh = m.numHeteroAtoms
+      na = mol.numAtoms
+      mw = mol.molWt
+      rot = mol.numRotatableBonds
+      nh = mol.numHeteroAtoms
     echo "Num Atoms:         ", na
     echo "Mol weight:        ", mw
     echo "Rot. Bonds:        ", rot
     echo "Num HetAtoms:      ", nh
-    echo "Canonical Smiles:  ", m.molToSmiles
-    echo "TPSA:              ", m.tPSA
-    echo "SSSR:              ", m.findSSSR
+    echo "Canonical Smiles:  ", mol.toSmiles
+    echo "TPSA:              ", mol.tPSA
+    echo "SSSR:              ", mol.findSSSR
+    echo "MolBlock: "
+    echo mol.toMolBlock
+    echo "SVG (CoordGen):"
+    echo mol.toSVG(coordGen = CoordGen)
+    echo "SVG (RDKit):"
+    echo mol.toSVG(coordGen = RDKit)

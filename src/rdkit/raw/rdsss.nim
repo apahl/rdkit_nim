@@ -2,7 +2,7 @@
 
 import os # `/`, getEnv RDKIT_CONDA
 
-import ./vector
+import ./cpptypes
 import ./rdmol
 
 const

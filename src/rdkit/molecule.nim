@@ -1,5 +1,6 @@
-# mol.nim
+# molecule.nim
 
+import ./raw/cpptypes
 import ./raw/rdmol
 
 type
@@ -10,8 +11,9 @@ type
 using
   this: Mol
 
-proc destroy*(this: var Mol) =
-  this.obj[].destroyROMol()
+proc `=destroy`*(this: var Mol) =
+  if not this.obj.isNil:
+    this.obj[].destroyROMol()
 
 proc ok*(this): bool =
   ## Returns true when the mol object is valid.
@@ -23,18 +25,18 @@ proc isNil*(this): bool =
 
 proc molFromSmiles*(smi: string): Mol =
   ## Create a mol object from a SMILES string.
+  ## The molecule is returned as an Option[Mol].
   ##
-  ## *Example:* create a molecule and check for success:
+  ## Create a molecule and check for success.
   ##
-  ## .. code-block::
-  ##   import rdkit / [mol, descriptors]
-  ##
-  ##   let
-  ##     smi = "c1ccccc1C(=O)NC2CC2" # cyclopropyl benzamide
-  ##     m = molFromSmiles(smi)
-  ##
-  ##   if m.ok:
-  ##     echo m.numAtoms
+  runnableExamples:
+    import molecule, descriptors
+
+    let
+      smi = "c1ccccc1C(=O)NC2CC2" # cyclopropyl benzamide
+      m = molFromSmiles(smi)
+    if m.ok:
+      echo m.numAtoms
 
   # result = new Mol
   let
@@ -44,11 +46,9 @@ proc molFromSmiles*(smi: string): Mol =
     m = rdkitSmilesToMol(s, p)
   result.obj = m
 
-proc smilesToMol*(smi: string): Mol {.deprecated: "use molFromSmiles instead".} =
-  molFromSmiles(smi)
-
 proc molFromSmarts*(sma: string): Mol =
   ## Create a mol object from a SMARTS string.
+  ## The molecule is returned as an Option[Mol].
   # result = new Mol
   let
     cstr = sma.cstring
@@ -56,11 +56,17 @@ proc molFromSmarts*(sma: string): Mol =
     m = rdkitSmartsToMol(s)
   result.obj = m
 
-proc smartsToMol*(sma: string): Mol {.deprecated: "use molFromSmarts instead".} =
-  molFromSmarts(sma)
+proc molDefault*(): Mol =
+  ## Create a default mol obhect,
+  ## which is the no-structure ("*")
+  molFromSmiles("*")
 
-proc molToSmiles*(mol: Mol): string =
+proc toSmiles*(mol: Mol): string =
   let cppSmi = rdkitMolToSmiles(mol.obj[])
+  result = $cppSmi.cStr
+
+proc toMolBlock*(mol: Mol): string =
+  let cppSmi = rdkitMolToMolBlock(mol.obj[])
   result = $cppSmi.cStr
 
 proc removeHs*(this): Mol =

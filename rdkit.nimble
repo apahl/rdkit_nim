@@ -50,6 +50,6 @@ task docs, " generate documentation":
   mkDir "docs"
   for file in listFiles("src/rdkit/"):
     if splitFile(file).ext == ".nim":
-      let taskCmd = "nim doc --index:on --verbosity:0 --hints:off -o:" & "docs" /../ file.changeFileExt("html").split("/")[2] & " " & file
+      let taskCmd = "LD_LIBRARY_PATH=$RDKIT_CONDA/lib nim doc --index:on --verbosity:0 --hints:off -o:" & "docs" /../ file.changeFileExt("html").split("/")[2] & " " & file
       exec taskCmd
       exec "nim buildIndex --verbosity:0 --hints:off -o:docs/theindex.html docs"

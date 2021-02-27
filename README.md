@@ -1,14 +1,13 @@
 # Nim RDKit Bindings
 
-After many (, many) trials this is the first example of a working rudimentary binding of the C++ cheminformatics toolkit [RDKit](http://rdkit.org/) for the [Nim](https://nim-lang.org) programming language.
-
+Rudimentary binding of the C++ cheminformatics toolkit [RDKit](http://rdkit.org/) for the [Nim](https://nim-lang.org) programming language.  All functionality in this project is wrapped from the totally awesome RDKit directly or a re-write of available Python code (e.g. the `qed` module).
 
 [Example](examples/ex01_mol_from_smiles.nim) for creating the mol object from the Smiles "c1ccccc1C(=O)NC" (methyl benzamide) and calculating some properties:
 
     $ nim build examples/ex01_mol_from_smiles.nim 
     $ LD_LIBRARY_PATH=$RDKIT_CONDA/lib ./bin/ex01_mol_from_smiles
     
-    Output:
+    Output (shortened):
         Mol Ok:            true
         Num Atoms:         10
         Mol weight:        135.166
@@ -28,12 +27,16 @@ The path to your conda installation of the RDKit has to be set by an environment
 Obviously, this project will change quickly. In the current state it is mainly for showing off my first success.  
 The following functionality from RDKit has been wrapped so far:
 
-* Parsing of molecules to / from Smiles and Smarts: `molFromSmiles (smilesToMol), molFromSmarts; molToSmiles`
+* Parsing of molecules to / from Smiles and Smarts: `molFromSmiles (smilesToMol), molFromSmarts; toSmiles`
 * Calculation of molecular properties: `numAtoms, molWt, numRings, cLogP, numHBA, numHBD, numRotatableBonds, fractionCSP3, tPSA, findSSSR`
 * Substructure search: `hasSubstructMatch, numSubstructMatches, substructMatches`
 * Drug-Like properties: The Python [QED](https://github.com/rdkit/rdkit/blob/master/rdkit/Chem/QED.py) module has been re-written in Nim.
+* Drawing molecules to SVG format
+    - the molecules can be drawn to SVG strings (`mol.toSVG()`), using either the CoordGen method (deafult) or the original RDKit functionality (`mol.toSVG(coordGen = RDKit)`).
 
-For further usage, until a real documentation becomes available, please have a look at the tests.
+        ![CoordGen](res/mol_coordgen.svg)![CoordGen](res/mol_rdkit.svg)
+
+For further usage, until a real documentation becomes available, please have a look at the tests and the examples.
 
 
 ## Installation
@@ -44,6 +47,7 @@ The output should like follows:
 
     $ nimble test
     Executing task test in /home/pahl/dev/nim/rdkit_nim/rdkit.nimble
+        [draw.nim]             passed.
         [mol.nim]             passed.
         [qed.nim]             passed.
         [sss.nim]             passed.
