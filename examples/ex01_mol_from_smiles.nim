@@ -10,7 +10,7 @@ when isMainModule:
   if mol.ok:
     let
       na = mol.numAtoms
-      mw = mol.molWt
+      mw = mol.avgMolWt
       rot = mol.numRotatableBonds
       nh = mol.numHeteroAtoms
     echo "Num Atoms:         ", na

@@ -23,7 +23,9 @@ when isMainModule:
   assert mol1.numSubstructMatches(query1) == 1
   assert mol1.numSubstructMatches(query2) == 0
 
-  assert mol1.substructMatches(query1) == @[@[9.uint, 10, 11]]
+  assert mol1.substructMatches(query1) == @[@[9, 10, 11]]
+
+
 
   # delete cylopropyl from cyclopropyl benzamide
   let m2 = deleteSubstructs(mol1, query1)

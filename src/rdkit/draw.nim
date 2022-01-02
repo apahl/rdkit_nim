@@ -10,6 +10,8 @@ type CoordGenMethod* = enum
 
 proc toSVG*(mol: Mol, width = 300, height = 200,
     coordGen: CoordGenMethod = CoordGen): string =
+  ## Creates an SVG image of the molecule and returns it as string.
+  ## `coordGen` can be either `CoordGen` (default) or `RDKit`.
   if coordGen == CoordGen:
     rdkitPreferCoordGen(true)
   else:
@@ -19,4 +21,3 @@ proc toSVG*(mol: Mol, width = 300, height = 200,
   drawer.rdkitDrawFinish()
   let cppSvg = drawer.rdkitDrawGetText()
   result = $cppSvg.cStr
-  # result = "Test"

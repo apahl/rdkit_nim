@@ -26,13 +26,13 @@ proc rdkitCompute2DCoords*(mol: ROMol) {.
 proc rdkitConstructMolDraw2DSVG*(width, height: cint): MolDraw2DSVG {.
     importcpp: "RDKit::MolDraw2DSVG(@)", constructor, header: svgHeader.}
 
-proc rdkitDrawMol*(this: MolDraw2DSVG, mol: ROMol) {.
+proc rdkitDrawMol*(self: MolDraw2DSVG, mol: ROMol) {.
     importcpp: "#.drawMolecule(@)", header: svgHeader.}
 
-proc rdkitDrawFinish*(this: MolDraw2DSVG) {.importcpp: "#.finishDrawing()",
+proc rdkitDrawFinish*(self: MolDraw2DSVG) {.importcpp: "#.finishDrawing()",
     header: svgHeader.}
 
-proc rdkitDrawGetText*(this: MolDraw2DSVG): CppString {.
+proc rdkitDrawGetText*(self: MolDraw2DSVG): CppString {.
     importcpp: "#.getDrawingText()", header: svgHeader.}
 
 # RDDepict::preferCoordGen = true;
@@ -41,5 +41,5 @@ proc rdkitDrawGetText*(this: MolDraw2DSVG): CppString {.
 
 # type
 #   StdMap {.importcpp: "std::map", header: "<map>".} [K, V] = object
-# proc `[]=`[K, V](this: var StdMap[K, V]; key: K; val: V) {.
+# proc `[]=`[K, V](self: var StdMap[K, V]; key: K; val: V) {.
 #   importcpp: "#[#] = #", header: "<map>".}

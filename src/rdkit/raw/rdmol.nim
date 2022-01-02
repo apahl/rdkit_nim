@@ -10,6 +10,11 @@ const
   molBlockHeader = condaPath / "include/rdkit/GraphMol/FileParsers/FileParsers.h"
   molHeader = condaPath / "include/rdkit/GraphMol/GraphMol.h"
   opsHeader = condaPath / "include/rdkit/GraphMol/MolOps.h"
+  ringHeader = condaPath / "include/rdkit/GraphMol/RingInfo.h"
+
+# The following line is needed when webview is also used,
+# otherwise the wrong gtk libs are loaded
+{.passL: "-L/usr/lib/x86_64-linux-gnu".}
 
 {.passL: "-L" & condaPath & "/lib".}
 {.passL: "-lRDKitGraphMol".}
@@ -52,3 +57,9 @@ proc rdkitMolToMolBlock*(mol: ROMol): CppString {.
 
 proc rdkitRemoveHs*(mol: ROMol): ptr ROMol {.
     importcpp: "RDKit::MolOps::removeHs(@)", header: opsHeader.}
+
+proc rdkitAtomRings*(this: ROMol): CppVecIntVector {.importcpp: "#.getRingInfo(@)->atomRings()",
+    header: ringHeader.}
+
+# proc rdkitSanitizeMol*(mol: ROMol) {.
+#     importcpp: "RDKit::MolOps::sanitizeMol(@)", header: opsHeader.}

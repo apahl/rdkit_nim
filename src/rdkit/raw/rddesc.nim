@@ -20,8 +20,11 @@ const
 proc rdkitNumAtoms*(this: ROMol): cuint {.importcpp: "#.getNumAtoms(@)",
     header: molHeader.}
 
-proc rdkitMolWt*(mol: ROMol): cdouble {.
+proc rdkitAvgMolWt*(mol: ROMol): cdouble {.
     importcpp: "RDKit::Descriptors::calcAMW(@)", header: descHeader.}
+
+proc rdkitExactMolWt*(mol: ROMol): cdouble {.
+    importcpp: "RDKit::Descriptors::calcExactMW(@)", header: descHeader.}
 
 proc rdkitNumHBD*(mol: ROMol): cuint {.importcpp: "RDKit::Descriptors::calcNumHBD(@)",
     header: descHeader.}

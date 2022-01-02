@@ -204,7 +204,7 @@ proc properties(m: Mol): QEDproperties =
       alerts += 1
 
   result = (
-    MW: mol.molWt,
+    MW: mol.avgMolWt,
     ALOGP: mol.cLogP,
     HBA: float(accCount),
     HBD: float(mol.numHBD),

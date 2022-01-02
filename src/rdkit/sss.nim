@@ -3,28 +3,33 @@
 import raw / [cpptypes, rdsss]
 import molecule
 
+type Int = int # torn between using `int` or `uint`
+
+
 using
-  this: Mol
+  self: Mol
 
-proc hasSubStructMatch*(this; query: Mol): bool =
+proc hasSubStructMatch*(self; query: Mol): bool =
   ## Returns true when the query was found.
-  not rdkitSubstructMatch(this.obj[], query.obj[]).isEmpty
+  let matches = rdkitSubstructMatch(self.obj[], query.obj[])
+  not matches.isEmpty
 
-proc numSubstructMatches*(this; query: Mol): uint =
+proc numSubstructMatches*(self; query: Mol): Int =
   ## Returns the number of substructure matches.
-  len(rdkitSubstructMatch(this.obj[], query.obj[]))
+  let matches = rdkitSubstructMatch(self.obj[], query.obj[])
+  Int(len(matches))
 
-proc substructMatches*(this; query: Mol): seq[seq[uint]] =
+proc substructMatches*(self; query: Mol): seq[seq[Int]] =
   # returns atom indices in the mol that match the query as seq of seq.
-  let matches = rdkitSubstructMatch(this.obj[], query.obj[])
+  let matches = rdkitSubstructMatch(self.obj[], query.obj[])
   if matches.isEmpty:
     return result
   for match in matches:
-    var m: seq[uint]
+    var m: seq[Int]
     for pair in match:
-      m.add(uint(pair.second))
+      m.add(Int(pair.second))
     result.add(m)
 
-proc deleteSubstructs*(this; query: Mol): Mol =
-  let m = rdkitDeleteSubstructs(this.obj[], query.obj[])
+proc deleteSubstructs*(self; query: Mol): Mol =
+  let m = rdkitDeleteSubstructs(self.obj[], query.obj[])
   result.obj = m

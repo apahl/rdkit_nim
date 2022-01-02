@@ -10,6 +10,9 @@ type
   CppVector*[T] {.importcpp: "std::vector", header: "<vector>".} = object
   # https://nim-lang.github.io/Nim/manual.html#importcpp-pragma-importcpp-for-objects
 
+  CppIntVector* = CppVector[cint]
+  CppVecIntVector* = CppVector[CppIntVector]
+
   CppPair*[T, U] {.importcpp: "std::pair", header: "<vector>".} = object
 
   CppIntPair* = CppPair[cint, cint]
@@ -26,6 +29,9 @@ proc first*[T, U](this: CppPair[T, U]): T {.importcpp: "#.first",
 
 proc second*[T, U](this: CppPair[T, U]): U {.importcpp: "#.second",
     header: "<vector>".}
+
+proc newVector*[T](): CppVector[T] {.importcpp: "std::vector<'*0>()",
+    header: "<vector>", constructor.}
 
 proc destroyVector*(this: CppVector) {.importcpp: "#.~vector()",
     header: "<vector>".}

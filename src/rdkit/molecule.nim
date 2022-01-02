@@ -11,9 +11,9 @@ type
 using
   this: Mol
 
-proc `=destroy`*(this: var Mol) =
-  if not this.obj.isNil:
-    this.obj[].destroyROMol()
+# proc `=destroy`*(this: var Mol) =
+#   if not this.obj.isNil:
+#     this.obj[].destroyROMol()
 
 proc ok*(this): bool =
   ## Returns true when the mol object is valid.
@@ -25,10 +25,8 @@ proc isNil*(this): bool =
 
 proc molFromSmiles*(smi: string): Mol =
   ## Create a mol object from a SMILES string.
-  ## The molecule is returned as an Option[Mol].
-  ##
-  ## Create a molecule and check for success.
-  ##
+  ## The object will be nil when no molecule could be generated.
+  ## This can be checked with `mol.ok` or `mol.isNil`
   runnableExamples:
     import molecule, descriptors
 
@@ -43,13 +41,14 @@ proc molFromSmiles*(smi: string): Mol =
     cstr = smi.cstring
     s = constructString(cstr)
     p = RdkitSmilesParserParams()
-    m = rdkitSmilesToMol(s, p)
-  result.obj = m
+  try:
+    let m = rdkitSmilesToMol(s, p)
+    result.obj = m
+  except:
+    result.obj = nil
 
 proc molFromSmarts*(sma: string): Mol =
   ## Create a mol object from a SMARTS string.
-  ## The molecule is returned as an Option[Mol].
-  # result = new Mol
   let
     cstr = sma.cstring
     s = constructString(cstr)
@@ -57,18 +56,50 @@ proc molFromSmarts*(sma: string): Mol =
   result.obj = m
 
 proc molDefault*(): Mol =
-  ## Create a default mol obhect,
+  ## Create a default mol object,
   ## which is the no-structure ("*")
   molFromSmiles("*")
 
-proc toSmiles*(mol: Mol): string =
-  let cppSmi = rdkitMolToSmiles(mol.obj[])
+proc toSmiles*(this): string =
+  let cppSmi = rdkitMolToSmiles(this.obj[])
   result = $cppSmi.cStr
 
-proc toMolBlock*(mol: Mol): string =
-  let cppSmi = rdkitMolToMolBlock(mol.obj[])
+proc toMolBlock*(this): string =
+  let cppSmi = rdkitMolToMolBlock(this.obj[])
   result = $cppSmi.cStr
 
 proc removeHs*(this): Mol =
   let m = rdkitRemoveHs(this.obj[])
   result.obj = m
+
+proc ringAtoms*(this): seq[seq[int]] =
+  ## Returns a list of list of atom indices in rings.
+  let ringAtoms = rdkitAtomRings(this.obj[])
+  if ringAtoms.isEmpty:
+    return result
+  for ratoms in ringAtoms:
+    var atoms: seq[int]
+    for ra in ratoms:
+      atoms.add(ra)
+    result.add(atoms)
+
+proc numRingsSizeGE*(this; n: int): int =
+  ## Returns the number of rings with size greater or equal than the given `n` in the molecule.
+  ## Example: `mol.numRingsSizeGE(7)` gives the number of rings with 7 or more atoms in `mol`.
+  # No need to call `ringAtoms` and iterate over the Nim seqs.
+  # Just directly check the lengths of the CPP vectors.
+  for ra in rdkitAtomRings(this.obj[]):
+    if int(ra.len) >= n:
+      result += 1
+
+proc largestRing*(this): int =
+  ## Returns the size of the largest ring in the molecule.
+  # No need to call `ringAtoms` and iterate over the Nim seqs.
+  # Just directly check the lengths of the CPP vectors.
+  for ra in rdkitAtomRings(this.obj[]):
+    let l = int(ra.len)
+    if l > result:
+      result = l
+
+# proc sanitize*(this) =
+#   rdkitSanitizeMol(this.obj)

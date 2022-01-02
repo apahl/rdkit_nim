@@ -10,9 +10,13 @@ proc numAtoms*(this): uint =
   ## Returns the number of heavy atoms.
   uint(this.obj[].rdkitNumAtoms)
 
-proc molWt*(this): float64 =
-  ## Returns the avergage mol weight.
-  float64(this.obj[].rdkitMolWt)
+proc avgMolWt*(this): float64 =
+  ## Returns the average mol weight.
+  float64(this.obj[].rdkitAvgMolWt)
+
+proc exactMolWt*(this): float64 =
+  ## Returns the exact mol weight.
+  float64(this.obj[].rdkitExactMolWt)
 
 proc numHBD*(this): uint =
   ## Returns the number of hydrogen bond donors.
