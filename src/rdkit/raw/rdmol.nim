@@ -12,9 +12,10 @@ const
   opsHeader = condaPath / "include/rdkit/GraphMol/MolOps.h"
   ringHeader = condaPath / "include/rdkit/GraphMol/RingInfo.h"
 
-# The following line is needed when webview is also used,
-# otherwise the wrong gtk libs are loaded
-{.passL: "-L/usr/lib/x86_64-linux-gnu".}
+when defined(webview):
+  # The following line is needed when webview is also used,
+  # otherwise the wrong gtk libs are loaded
+  {.passL: "-L/usr/lib/x86_64-linux-gnu".}
 
 {.passL: "-L" & condaPath & "/lib".}
 {.passL: "-lRDKitGraphMol".}
