@@ -46,7 +46,7 @@ task test, "run tests":
     for st in skippedTests:
       echo "    - ", st
 
-task docs, " generate documentation":
+task docs, "generate documentation":
   echo "    generating documentation..."
   mkDir "docs"
   for file in listFiles("src/rdkit/"):
