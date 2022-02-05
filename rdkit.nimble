@@ -18,8 +18,10 @@ task test, "run tests":
   # test files have to be in dir `tests` and of the form `test_xxx.nim`
   # list tests that should be skipped here, e.g. during development,
   # when they have already been run.
-  let testsToSkip = @["test_xxx"] # @["test_sss", "test_mol, "test_qed", "test_draw"]
-  # let testsToSkip = @["test_sss", "test_qed", "test_draw"] # @["test_draw", "test_mol", "test_qed", "test_sss"]
+  # let testsToSkip = @["test_xxx"]
+  let testsToSkip = @[
+    "test_mol", "test_sss", "test_qed", "test_draw"
+  ]
   var skippedTests: seq[string]
   mkDir "tests/bin"
   var failed = false

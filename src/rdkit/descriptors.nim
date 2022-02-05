@@ -1,4 +1,4 @@
-# mol.nim
+# descriptors.nim
 
 import ./raw/rddesc
 import molecule
