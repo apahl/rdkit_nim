@@ -6,8 +6,8 @@ template directWrite*(s: string): untyped =
   stdout.flushFile
 
 ## compare two doubles with a tolerance
-proc equalFloats*(d1, d2: float; floatCutoff = 1.0e-4): bool =
-  abs(d1 - d2) < floatCutoff
+proc equalFloats*(d1, d2: float; delta = 1.0e-4): bool =
+  abs(d1 - d2) < delta
 
 ## right-pad a string
 proc rpad*(s: string; n: int): string =

@@ -30,6 +30,8 @@ The following functionality from RDKit has been wrapped so far:
 * Parsing of molecules to / from Smiles and Smarts: `molFromSmiles (smilesToMol), molFromSmarts; toSmiles`
 * Calculation of molecular properties: `numAtoms, molWt, numRings, cLogP, numHBA, numHBD, numRotatableBonds, fractionCSP3, tPSA, findSSSR`
 * Substructure search: `hasSubstructMatch, numSubstructMatches, substructMatches`
+* Murcko scaffolds
+* Morgan fingerprints and Tanimoto similarity
 * Drug-Like properties: The Python [QED](https://github.com/rdkit/rdkit/blob/master/rdkit/Chem/QED.py) module has been re-written in Nim.
 * Drawing molecules to SVG format
     - the molecules can be drawn to SVG strings (`mol.toSVG()`), using either the CoordGen method (default) or the original RDKit functionality (`mol.toSVG(coordGen = RDKit)`).
@@ -47,12 +49,15 @@ The output should look like this:
 
     $ nimble test
     Executing task test in /home/pahl/dev/nim/rdkit_nim/rdkit.nimble
-        [draw.nim]             passed.
+        [draw.nim]            passed.
+        [fingerprints.nim]    passed.
         [mol.nim]             passed.
         [qed.nim]             passed.
+        [scaffolds.nim]       passed.
         [sss.nim]             passed.
 
-        All thests passed.
+        All tests passed.
+
 
 
 

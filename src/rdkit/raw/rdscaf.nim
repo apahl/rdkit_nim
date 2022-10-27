@@ -1,4 +1,4 @@
-# raw/rdscaf.nim
+# raw/rdfp.nim
 
 import os # `/`, getEnv RDKIT_CONDA
 

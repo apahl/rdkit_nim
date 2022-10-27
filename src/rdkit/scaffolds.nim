@@ -17,7 +17,7 @@ proc murckoMol*(this): Mol =
 
 proc murckoSmiles*(smi: string; ignoreInvalid = false): string {.raises: [ValueError].} =
   ## Generate the Murcko scaffold of a molecule
-  ## directly from its Smile string.
+  ## directly from its Smiles string.
   ## When `ignoreInvalid` is true (default is false),
   ## then invalid molecules are ignored and an empty Smiles string is returned.
   ## Returns a Smiles string of the Murcko scaffold.
